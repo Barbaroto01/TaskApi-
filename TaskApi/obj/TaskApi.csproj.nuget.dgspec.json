@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\guilh\\OneDrive\\Documentos\\Programação\\Incantare\\TaskApi\\TaskApi.csproj": {}
+    "C:\\Users\\guilh\\OneDrive\\Documentos\\Programação\\Incantare\\TaskApi\\TaskApi\\TaskApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\guilh\\OneDrive\\Documentos\\Programação\\Incantare\\TaskApi\\TaskApi.csproj": {
+    "C:\\Users\\guilh\\OneDrive\\Documentos\\Programação\\Incantare\\TaskApi\\TaskApi\\TaskApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\guilh\\OneDrive\\Documentos\\Programação\\Incantare\\TaskApi\\TaskApi.csproj",
+        "projectUniqueName": "C:\\Users\\guilh\\OneDrive\\Documentos\\Programação\\Incantare\\TaskApi\\TaskApi\\TaskApi.csproj",
         "projectName": "TaskApi",
-        "projectPath": "C:\\Users\\guilh\\OneDrive\\Documentos\\Programação\\Incantare\\TaskApi\\TaskApi.csproj",
+        "projectPath": "C:\\Users\\guilh\\OneDrive\\Documentos\\Programação\\Incantare\\TaskApi\\TaskApi\\TaskApi.csproj",
         "packagesPath": "C:\\Users\\guilh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\guilh\\OneDrive\\Documentos\\Programação\\Incantare\\TaskApi\\obj\\",
+        "outputPath": "C:\\Users\\guilh\\OneDrive\\Documentos\\Programação\\Incantare\\TaskApi\\TaskApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\guilh\\AppData\\Roaming\\NuGet\\NuGet.Config"

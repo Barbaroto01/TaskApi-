@@ -31,3 +31,7 @@ C:\Users\guilh\OneDrive\Documentos\Programação\TaskApi\obj\Debug\net8.0\refint
 C:\Users\guilh\OneDrive\Documentos\Programação\TaskApi\obj\Debug\net8.0\TaskApi.pdb
 C:\Users\guilh\OneDrive\Documentos\Programação\TaskApi\obj\Debug\net8.0\TaskApi.genruntimeconfig.cache
 C:\Users\guilh\OneDrive\Documentos\Programação\TaskApi\obj\Debug\net8.0\ref\TaskApi.dll
+C:\Users\guilh\OneDrive\Documentos\Programação\Incantare\TaskApi\obj\Debug\net8.0\TaskApi.csproj.AssemblyReference.cache
+C:\Users\guilh\OneDrive\Documentos\Programação\Incantare\TaskApi\obj\Debug\net8.0\TaskApi.dll
+C:\Users\guilh\OneDrive\Documentos\Programação\Incantare\TaskApi\obj\Debug\net8.0\refint\TaskApi.dll
+C:\Users\guilh\OneDrive\Documentos\Programação\Incantare\TaskApi\obj\Debug\net8.0\TaskApi.pdb
