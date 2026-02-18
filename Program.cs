@@ -1,44 +1,69 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Mvc;
+using TaskApi.Models;
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+namespace TaskApi.Controllers;
 
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+[ApiController]
+[Route("tasks")]
+public class TasksController : ControllerBase
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    private static readonly List<TaskItem> Tasks = new();
+    private static int _nextId = 1;
 
-app.UseHttpsRedirection();
+    [HttpGet]
+    public ActionResult<List<TaskItem>> GetAll()
+        => Ok(Tasks.OrderByDescending(t => t.Id));
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    [HttpGet("{id:int}")]
+    public ActionResult<TaskItem> GetById(int id)
+    {
+        var task = Tasks.FirstOrDefault(t => t.Id == id);
+        return task is null ? NotFound() : Ok(task);
+    }
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+    public record CreateTaskDto(string Title, string? Description);
+    public record UpdateTaskDto(string Title, string? Description, bool IsDone);
 
-app.Run();
+    [HttpPost]
+    public ActionResult<TaskItem> Create([FromBody] CreateTaskDto dto)
+    {
+        if (string.IsNullOrWhiteSpace(dto.Title))
+            return BadRequest("Title é obrigatório.");
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        var task = new TaskItem
+        {
+            Id = _nextId++,
+            Title = dto.Title.Trim(),
+            Description = dto.Description
+        };
+
+        Tasks.Add(task);
+        return CreatedAtAction(nameof(GetById), new { id = task.Id }, task);
+    }
+
+    [HttpPut("{id:int}")]
+    public ActionResult<TaskItem> Update(int id, [FromBody] UpdateTaskDto dto)
+    {
+        var task = Tasks.FirstOrDefault(t => t.Id == id);
+        if (task is null) return NotFound();
+
+        if (string.IsNullOrWhiteSpace(dto.Title))
+            return BadRequest("Title é obrigatório.");
+
+        task.Title = dto.Title.Trim();
+        task.Description = dto.Description;
+        task.IsDone = dto.IsDone;
+
+        return Ok(task);
+    }
+
+    [HttpDelete("{id:int}")]
+    public IActionResult Delete(int id)
+    {
+        var task = Tasks.FirstOrDefault(t => t.Id == id);
+        if (task is null) return NotFound();
+
+        Tasks.Remove(task);
+        return NoContent();
+    }
 }
