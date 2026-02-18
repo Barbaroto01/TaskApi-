@@ -67,3 +67,7 @@ public class TasksController : ControllerBase
         return NoContent();
     }
 }
+        Tasks.Remove(task);
+        return NoContent();
+    }
+}
