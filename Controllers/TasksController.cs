@@ -34,7 +34,9 @@ public class TasksController : ControllerBase
         {
             Id = _nextId++,
             Title = dto.Title.Trim(),
-            Description = dto.Description
+            Description = dto.Description,
+            IsDone = false,
+            CreatedAt = DateTime.UtcNow
         };
 
         Tasks.Add(task);
@@ -63,10 +65,6 @@ public class TasksController : ControllerBase
         var task = Tasks.FirstOrDefault(t => t.Id == id);
         if (task is null) return NotFound();
 
-        Tasks.Remove(task);
-        return NoContent();
-    }
-}
         Tasks.Remove(task);
         return NoContent();
     }
